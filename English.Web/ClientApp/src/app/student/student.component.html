@@ -1,0 +1,78 @@
+<h1 id="tableLabel">Student</h1>
+
+
+<p *ngIf="!student"><em>Loading...</em></p>
+<button class="btn btn-primary" (click)="openModal(true,null)">Add new Student</button>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="student.totalRecord > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>FullName</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of student.data">
+      <td>{{ s.id }}</td>
+      <td>{{ s.fullname }}</td>
+      <td>{{ s.email }}</td>
+      <td>{{ s.phone }}</td>
+      <td>
+        <button class="btn btn-info btm-sm" (click)="openModal(false,s)">Edit</button>
+        <button class="btn btn-danger btm-sm" (click)="deleteStudent(s)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul class="pagination">
+  <li class="page-item">
+    <a bref="javascript:void(0);" (click)="searchPrevious()">Trước</a>
+  </li>
+  <li class="page-item">{{student.page}}</li>
+  <li class="page-item">
+    <a bref="javascript:void(0);" (click)="searchNext()">Sau</a>
+  </li>
+</ul>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  *ngIf="!isEdit" id="exampleModalLabel">Add new Student</h5>
+        <h5 class="modal-title"  *ngIf="isEdit" id="exampleModalLabel">Edit</h5>
+        <h5 class="modal-title"  *ngIf="isDelete" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngIf="isEdit">
+          <div class="col-4">id</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "stu.id"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4">fullname</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "stu.fullname"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4">email</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "stu.email"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4">phone</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "stu.phone"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateStudent()" >Save</button>
+        <button type="button" class="btn btn-success" (click)="addStudent()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

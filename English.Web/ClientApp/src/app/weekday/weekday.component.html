@@ -1,0 +1,20 @@
+<h1 id="tableLabel">SHECDULE</h1>
+<p *ngIf="!weekday"></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weekday.totalRecord>0">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Shecdule</th>
+        <th>Action</th>
+       
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let wd of weekday.data ">
+            <td>{{ wd.id }}</td>
+            <td>{{ wd.name }} </td>
+            
+            
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,77 @@
+<h1 id="tableLabel">Class</h1>
+
+
+<p *ngIf="!class"></p>
+<button class="btn btn-primary" (click)="openModal(true,null)">Add new Class</button>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="class.totalRecord > 0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of class.data; index as i">
+      <td>{{ s.id }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.startDate }}</td>
+      <td>{{ s.price }}</td>
+      <td>
+        <button class="btn btn-info btm-sm" (click)="openModal(false,s)">Edit</button>
+        <button class="btn btn-danger btm-sm" (click)="deleteClass(s)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="javascript:void(0);" (click)="searchPrevious()">Trước</a>
+  </li>
+  <li class="page-item">{{class.page}}</li>
+  <li class="page-item">
+    <a href="javascript:void(0);" (click)="searchNext()">Sau</a>
+  </li>
+</ul>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  *ngIf="!isEdit" id="exampleModalLabel">Add new Class</h5>
+        <h5 class="modal-title"  *ngIf="!isEdit" id="exampleModalLabel">Edit</h5>
+        <h5 class="modal-title"  *ngIf="!isDelete" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="row" *ngIf="isEdit">
+          <div class="col-4">Id</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "cls.id"></div>
+        </div>
+        <br> -->
+        <div class="row">
+          <div class="col-4">Name</div>
+          <div class="col-8"><input class="form-control"  [(ngModel)] = "cls.name"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4">Start Date</div>
+          <div class="col-8"><input class="form-control" type="date" [(ngModel)] = "cls.startDate"></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-4">Price</div>
+          <div class="col-8"><input class="form-control" [(ngModel)] = "cls.price"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateClass()" >Save</button>
+        <button type="button" class="btn btn-success" (click)="addClass(cls.name, cls.startDate, cls.price)">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

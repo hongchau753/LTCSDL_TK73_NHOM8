@@ -1,0 +1,18 @@
+<h1 id="tableLabel">Category</h1>
+<p *ngIf="!Category"><em></em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="lstCategory">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of lstCategory ">
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+      
+      </tr>
+    </tbody>
+  </table>
